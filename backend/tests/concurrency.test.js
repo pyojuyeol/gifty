@@ -15,6 +15,7 @@ describe('재고 동시성 제어', () => {
 
   beforeAll(async () => {
     await sequelize.authenticate();
+    await sequelize.sync(); // CI처럼 서버를 미리 띄우지 않은 환경에서는 테이블이 없으므로 직접 생성
 
     await User.findOrCreate({
       where: { email: 'jest_admin@gifty.com' },
